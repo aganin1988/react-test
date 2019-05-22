@@ -19,7 +19,7 @@ export class AuthService implements IAuthTokenProvider {
        // return localStorage.getItem('authToken') as string;
     }
     public get isAuthentificated():boolean{
-        return this.authToken !== null;
+        return this._authToken !== null;
     }
     public async LogIn(login:string, password:string):Promise<boolean>{
         this._authToken = "test auth Token";

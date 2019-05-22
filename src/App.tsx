@@ -13,7 +13,7 @@ export class App extends Component {
     super(props, context);
 
     this.container = new Container();
-    this.container.bind<AuthService>(AuthService).toSelf();
+    this.container.bind<AuthService>(AuthService).toSelf().inSingletonScope();
   }
   container: Container;
   render(){
