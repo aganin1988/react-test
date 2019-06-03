@@ -8,10 +8,13 @@
     "@types/react": "16.8.18",
     "@types/react-dom": "16.8.4",
     "axios": "^0.18.0",
+    "axios-observable": "^1.1.0",
+    "formik": "^1.5.7",
     "inversify": "^5.0.1",
     "inversify-react": "^0.4.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.2",
@@ -38,5 +41,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "^4.3.3",
+    "typings-for-css-modules-loader": "^1.7.0"
   }
 }

@@ -1,29 +1,32 @@
 import "reflect-metadata";
 import {} from  'axios'
 import { injectable } from 'inversify';
-import { EventEmitter } from 'events';
+import { Observable, BehaviorSubject } from 'rxjs'
 
 export interface IAuthTokenProvider{
     readonly authToken: string|null;
-    readonly isAuthentificated: boolean;
-    readonly on: EventEmitter;
+    readonly isAuthentificated$: Observable<boolean>;
 }
+export interface IAuthService{
+    LogIn(login: string, password: string): Promise<boolean>
+}
+
 @injectable()
 export class AuthService implements IAuthTokenProvider {
-    static readonly IS_AUTH_CHANGED = 'isAuthChanged';
-    on: EventEmitter = new EventEmitter();
-
+  
     private _authToken:string|null = null;
+    private isAuthentificated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
     public get authToken(): string|null{
         return this._authToken;
-       // return localStorage.getItem('authToken') as string;
     }
-    public get isAuthentificated():boolean{
-        return this._authToken !== null;
-    }
+
+    public readonly isAuthentificated$ = this.isAuthentificated.asObservable();
+
     public async LogIn(login:string, password:string):Promise<boolean>{
+
+        this.isAuthentificated.next(true);
         this._authToken = "test auth Token";
-        this.on.emit(AuthService.IS_AUTH_CHANGED, this.isAuthentificated);
         return true;
     }
 }
